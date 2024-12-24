@@ -1,0 +1,27 @@
+{
+  "name": "final-proj",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "type": "module" , 
+  "scripts": {
+    "//test": "mocha tests/test-runner.js",
+    "test": "cucumber-js" , 
+    "report": "allure serve reports/allure-results"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@cucumber/cucumber": "^11.1.1",
+    "allure-commandline": "^2.32.0",
+    "chai": "^5.1.2",
+    "cucumber-html-reporter": "^7.2.0",
+    "dotenv": "^16.4.7",
+    "mocha": "^11.0.1",
+    "selenium-webdriver": "^4.27.0"
+  }
+}
