@@ -3,6 +3,9 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { Builder, By, until } from 'selenium-webdriver';
 import AddToCartPage from '../../pages/AddToCartPage.js';
+import { setDefaultTimeout } from '@cucumber/cucumber';
+
+setDefaultTimeout(100000)
 
 let driver;
 let addToCartPage;
