@@ -2,7 +2,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { Builder } from 'selenium-webdriver';
-import ResetPage from '../pages/ResetPage.js';
+import ResetPage from '../../pages/ResetPage.js';
 
 let driver;
 let resetPage;

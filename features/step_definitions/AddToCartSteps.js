@@ -2,7 +2,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { Builder } from 'selenium-webdriver';
-import AddToCartPage from '../pages/AddToCartPage.js';
+import AddToCartPage from '../../pages/AddToCartPage.js';
 
 let driver;
 let addToCartPage;

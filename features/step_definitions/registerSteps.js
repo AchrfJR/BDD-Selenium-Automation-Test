@@ -2,7 +2,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { Builder } from 'selenium-webdriver';
-import RegisterPage from '../pages/RegisterPage.js';
+import RegisterPage from '../../pages/RegisterPage.js';
 
 let driver;
 let registerPage;
