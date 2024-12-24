@@ -1,5 +1,5 @@
 
-import { By } from 'selenium-webdriver';
+import { By, until } from 'selenium-webdriver';
 
 export default class AddToCartPage {
     constructor(driver) {
@@ -11,18 +11,24 @@ export default class AddToCartPage {
     }
 
     async clickAddToCartButton() {
-        await this.driver.findElement(By.id('add-to-cart-button-id')).click();
+        const button = await this.driver.findElement(By.id('add-to-cart-button-20')); // Updated selector
+        await button.click();
     }
 
-    async selectProductOptions(options) {
-        for (const [option, value] of Object.entries(options)) {
-            const element = await this.driver.findElement(By.css(option));
-            await element.sendKeys(value);
-        }
+    async confirmAddingToCart() {
+        // The page automatically confirms adding the item after clicking the button, no extra confirmation needed
     }
 
     async getSuccessMessage() {
-        return await this.driver.findElement(By.css('.success-message')).getText();
+        // Increase the timeout to 10 seconds for the success message to appear
+        const successMessageElement = await this.driver.wait(
+            until.elementLocated(By.css('#bar-notification .bar-notification.success')),
+            10000 // Wait up to 10 seconds
+        );
+        const message = await successMessageElement.getText();
+        return message;
     }
 }
+
+
 

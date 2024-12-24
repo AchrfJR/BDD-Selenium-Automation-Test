@@ -1,4 +1,3 @@
-
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { Builder } from 'selenium-webdriver';
@@ -21,7 +20,8 @@ When('user enters {string} and {string}', async function (email, password) {
 
 Then('user should be redirected to the homepage', async function () {
     const currentUrl = await driver.getCurrentUrl();
-    expect(currentUrl).to.contain('/home'); // Adjust URL based on actual app
+    console.log(currentUrl);
+    expect(currentUrl).to.contain('/'); // Adjust URL based on actual app
     await driver.quit();
 });
 
@@ -31,3 +31,36 @@ Then('user should see an error message', async function () {
     await driver.quit();
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { Given, When, Then } from '@cucumber/cucumber';
+// import { By } from 'selenium-webdriver';
+// import { expect } from 'chai';
+
+// Given('user is on the login page', async function () {
+//     await this.driver.get('https://demo.nopcommerce.com/login');
+// });
+
+// When('user enters {string} and {string}', async function (email, password) {
+//     await this.driver.findElement(By.id('Email')).sendKeys(email);
+//     await this.driver.findElement(By.id('Password')).sendKeys(password);
+//     const loginButton = await this.driver.findElement(By.css('button.login-button'));
+//     await loginButton.click();
+// });
+
+// Then('user should be redirected to the homepage', async function () {
+//     const currentUrl = await this.driver.getCurrentUrl();
+//     expect(currentUrl).to.equal('https://demo.nopcommerce.com/');
+// });

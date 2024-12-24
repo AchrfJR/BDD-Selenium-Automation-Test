@@ -1,4 +1,5 @@
 
+@register
 Feature: Users could register with new accounts
        Scenario:user could register with valid data successfully
          Given User go to register page

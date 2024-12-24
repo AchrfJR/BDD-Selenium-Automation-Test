@@ -1,34 +1,30 @@
 
 import { Given, When, Then } from '@cucumber/cucumber';
-import { expect } from 'chai';
-import { Builder } from 'selenium-webdriver';
-import ResetPage from '../../pages/ResetPage.js';
+import { Builder, By, until } from 'selenium-webdriver';
+import assert from 'assert';
 
-let driver;
-let resetPage;
-
-Given('user navigates to the reset password page', async function () {
-    driver = new Builder().forBrowser('chrome').build();
-    resetPage = new ResetPage(driver);
-    await resetPage.navigateToResetPage();
+Given('user navigate to login page', async function () {
+    this.driver = await new Builder().forBrowser('chrome').build(); // Initialize the driver here
+    await this.driver.get('https://demo.nopcommerce.com/login');
 });
 
-When('user enters {string} in the email field', async function (email) {
-    await resetPage.enterEmail(email);
+When('user click on forgetPassword', async function () {
+    const forgotPasswordLink = await this.driver.findElement(By.css('.forgot-password a'));
+    await forgotPasswordLink.click();
 });
 
-When('user clicks on the recovery button', async function () {
-    await resetPage.clickRecoverButton();
+Then('user navigate to forgetPage and enter his email {string}', async function (email) {
+    await this.driver.wait(until.urlContains('/passwordrecovery'));
+    const emailField = await this.driver.findElement(By.id('Email'));
+    await emailField.sendKeys(email);
 });
 
-Then('user sees a confirmation message {string}', async function (expectedMessage) {
-    const actualMessage = await resetPage.getResetConfirmationMessage();
-    expect(actualMessage).to.equal(expectedMessage);
-    await driver.quit();
+Then('user click on Recovery Button', async function () {
+    const recoveryButton = await this.driver.findElement(By.css('button[name="send-email"]'));
+    await recoveryButton.click();
 });
 
-Then('user sees an error message {string}', async function (expectedMessage) {
-    const actualMessage = await resetPage.getErrorMessage();
-    expect(actualMessage).to.equal(expectedMessage);
-    await driver.quit();
+Then('password will be reset', async function () {
+    const notificationMessage = await this.driver.findElement(By.css('#bar-notification .bar-notification.success .content')).getText();
+    assert(notificationMessage.includes("Email with instructions has been sent to you"));
 });

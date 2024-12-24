@@ -14,11 +14,10 @@ export default class ResetPage {
     }
 
     async clickRecoverButton() {
-        await this.driver.findElement(By.css('button.password-recovery-button')).click();
+        await this.driver.findElement(By.css('button[name="send-email"]')).click();
     }
 
     async getResetConfirmationMessage() {
         return await this.driver.findElement(By.css('.result')).getText();
     }
 }
-
