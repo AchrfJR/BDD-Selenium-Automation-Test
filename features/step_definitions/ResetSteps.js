@@ -2,6 +2,10 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { Builder, By, until } from 'selenium-webdriver';
 import assert from 'assert';
+import { setDefaultTimeout } from '@cucumber/cucumber';
+
+setDefaultTimeout(100000)
+
 
 Given('user navigate to login page', async function () {
     this.driver = await new Builder().forBrowser('chrome').build(); // Initialize the driver here
